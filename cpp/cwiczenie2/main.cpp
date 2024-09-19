@@ -26,21 +26,47 @@ void quick_sort(int *tab, int lewy, int prawy)
 	if(i < prawy)
 	quick_sort(tab, i, prawy);
 }
-int main()
-{
-	int *tab, n;
-  	cin>>n;
-  	tab = new int [n]; //przydzielenie pamięci na elementy tablicy
-  	//wczytanie liczb
-  	for(int i=0;i<n;i++)
-    	cin>>tab[i];
- 
-  	quick_sort(tab,0, n-1);
- 
-  	for(int i=0;i<n;i++)
-          cout<<tab[i]<<" ";
- 
-  	cin.ignore();
-  	cin.get();
-  	return 0;
+
+
+// Test wydajności sortowania QuickSort
+TEST(BenchmarkTest, QuickSortBenchmark) {
+    std::vector<int> vec(10000); // Tworzymy wektor z 10000 losowymi liczbami
+    std::srand(std::time(0)); // Inicjalizacja generatora liczb losowych
+    std::generate(vec.begin(), vec.end(), std::rand);
+
+    // Początek pomiaru czasu
+    auto start = std::chrono::high_resolution_clock::now();
+
+    quick_sort(tab,0, n-1); // Sortujemy wektor
+
+    // Koniec pomiaru czasu
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end - start;
+
+    std::cout << "Czas sortowania: " << elapsed_seconds.count() << "s\n";
 }
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
+
+// int main()
+// {
+// 	int *tab, n;
+//   	cin>>n;
+//   	tab = new int [n]; //przydzielenie pamięci na elementy tablicy
+//   	//wczytanie liczb
+//   	for(int i=0;i<n;i++)
+//     	cin>>tab[i];
+ 
+//   	quick_sort(tab,0, n-1);
+ 
+//   	for(int i=0;i<n;i++)
+//           cout<<tab[i]<<" ";
+ 
+//   	cin.ignore();
+//   	cin.get();
+//   	return 0;
+// }
