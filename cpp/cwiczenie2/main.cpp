@@ -5,42 +5,58 @@
 #include <ctime>
 #include <chrono>
 
-int partition(std::vector<int>& arr, int low, int high) {
-    int pivot = arr[high];
-    int i = (low - 1);
+using namespace std;
 
-    for (int j = low; j <= high - 1; j++) {
-        if (arr[j] <= pivot) {
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high]; // Wybieramy element skrajny jako pivot
+    int i = low - 1;       // Indeks mniejszego elementu
+
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
             i++;
-            std::swap(arr[i], arr[j]);
+            swap(arr[i], arr[j]); // Zamieniamy elementy mniejsze od pivotu na lewą stronę
         }
     }
-    std::swap(arr[i + 1], arr[high]);
-    return (i + 1);
+    swap(arr[i + 1], arr[high]); // Przesuwamy pivot na odpowiednie miejsce
+    return i + 1; // Zwracamy indeks pivotu
 }
 
-void quick_sort(std::vector<int>& arr, int low, int high) {
+void quickSort(vector<int>& arr, int low, int high) {
     if (low < high) {
-        int pi = partition(arr, low, high);
-        quick_sort(arr, low, pi - 1);
-        quick_sort(arr, pi + 1, high);
+        int pi = partition(arr, low, high); // Znajdujemy punkt podziału
+
+        quickSort(arr, low, pi - 1);  // Sortujemy lewą część
+        quickSort(arr, pi + 1, high); // Sortujemy prawą część
     }
-}
-
-void run_benchmark() {
-    std::vector<int> vec(10000);
-    std::srand(std::time(0));
-    std::generate(vec.begin(), vec.end(), std::rand);
-
-    auto start = std::chrono::high_resolution_clock::now();
-    quick_sort(vec, 0, vec.size() - 1);
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> elapsed_seconds = end - start;
-
-    std::cout << "Czas sortowania: " << elapsed_seconds.count() << "s\n";
 }
 
 int main() {
-    run_benchmark();
+    // Tworzymy wektor z 10000 losowymi liczbami
+    vector<int> vec(10000); 
+    srand(time(0)); // Inicjalizacja generatora liczb losowych
+    generate(vec.begin(), vec.end(), rand);
+
+    int n = vec.size();
+
+    // Początek pomiaru czasu
+    auto start = chrono::high_resolution_clock::now();
+
+    // Sortowanie wektora przy użyciu QuickSort
+    quickSort(vec, 0, n - 1);
+
+    // Koniec pomiaru czasu
+    auto end = chrono::high_resolution_clock::now();
+    chrono::duration<double> elapsed_seconds = end - start;
+
+    cout << "Czas sortowania: " << elapsed_seconds.count() << "s\n";
+
+    // Sprawdzanie, czy tablica jest posortowana
+    bool sorted = is_sorted(vec.begin(), vec.end());
+    if (sorted) {
+        cout << "Tablica została poprawnie posortowana.\n";
+    } else {
+        cout << "Błąd: Tablica nie jest poprawnie posortowana.\n";
+    }
+
     return 0;
 }
