@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <ctime>
 #include <chrono>
-#include <gtest/gtest.h>
 
 int partition(std::vector<int>& arr, int low, int high) {
     int pivot = arr[high];
@@ -28,7 +27,7 @@ void quick_sort(std::vector<int>& arr, int low, int high) {
     }
 }
 
-TEST(BenchmarkTest, QuickSortBenchmark) {
+void run_benchmark() {
     std::vector<int> vec(10000);
     std::srand(std::time(0));
     std::generate(vec.begin(), vec.end(), std::rand);
@@ -41,7 +40,7 @@ TEST(BenchmarkTest, QuickSortBenchmark) {
     std::cout << "Czas sortowania: " << elapsed_seconds.count() << "s\n";
 }
 
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+int main() {
+    run_benchmark();
+    return 0;
 }
