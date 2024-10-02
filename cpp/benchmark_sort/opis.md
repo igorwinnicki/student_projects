@@ -95,4 +95,5 @@
 }
 
 + Przykład wykonanego kodu
-![](https://github.com/igorwinnicki/student_projects/blob/main/cpp/benchmark_sort/sort.png)
+
+![ Tekst alternatywny](https://github.com/igorwinnicki/student_projects/blob/main/cpp/benchmark_sort/sort.png)
