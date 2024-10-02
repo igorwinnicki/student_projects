@@ -95,4 +95,4 @@
 }
 
 + Przykład wykonanego kodu
-![](https://pandao.github.io/editor.md/examples/images/4.jpg)
+![](https://github.com/igorwinnicki/student_projects/blob/main/cpp/benchmark_sort/sort.png)
