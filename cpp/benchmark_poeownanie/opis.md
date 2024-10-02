@@ -1,8 +1,9 @@
 # Benchmark porównanie quicksort i bubble
 #### Lista funkcji 
                 
-+ Funkcja bąbelkowa.
+1. Funkcja bąbelkowa.
     + Pozostaje nie zmieniona w porównaniu do orginalnej funkcji.
+
 '''cpp
   void bubbleSort(std::vector<int>& vec) {
     bool swapped;
@@ -16,8 +17,9 @@
         }
     } while (swapped);
 }
-+ Funkcja quicksort.
+2. Funkcja quicksort.
     + Również pozostaje nie zmieniona w porównaniu do orginalnej funkcji.
+
 '''cpp
   void bubbleSort(std::vector<int>& vec) {
     bool swapped;
@@ -31,7 +33,8 @@
         }
     } while (swapped);
 }
-+ Funkcja króra sprawdza czy wektor na pewno jest posortowany.
+3. Funkcja króra sprawdza czy wektor na pewno jest posortowany.
+
 '''cpp
   bool isSorted(const std::vector<int>& vec) {
       for (size_t i = 1; i < vec.size(); i++) {
@@ -40,8 +43,9 @@
       return true;
   }
 
-+ Przeprowadzane są testy sorowania bąbelkowego.
+4. Przeprowadzane są testy sortowania bąbelkowego.
   + Sortowania bąbelkowego.
+
 '''cpp
   TEST(BenchmarkTest, BubbleSortBenchmark) {
     std::vector<int> original(1000);
@@ -64,6 +68,7 @@
     }
 }
   + Sortowania quicksort.
+
 '''cpp
   TEST(BenchmarkTest, BubbleSortBenchmark) {
     std::vector<int> original(1000);
