@@ -5,7 +5,20 @@
 #include "gtest/gtest.h"
 #include <chrono>
 
-// Funkcja sortująca wektor za pomocą QuickSort
+// Sort functions remain unchanged.
+void bubbleSort(std::vector<int>& vec) {
+    bool swapped;
+    do {
+        swapped = false;
+        for (size_t i = 0; i < vec.size() - 1; i++) {
+            if (vec[i] > vec[i + 1]) {
+                std::swap(vec[i], vec[i + 1]);
+                swapped = true;
+            }
+        }
+    } while (swapped);
+}
+
 void quickSort(std::vector<int>& vec) {
     if (vec.size() <= 1) return;
     int pivot = vec[vec.size() / 2];
@@ -22,26 +35,57 @@ void quickSort(std::vector<int>& vec) {
     vec.insert(vec.end(), right.begin(), right.end());
 }
 
-// Test wydajności sortowania QuickSort
+// Function to verify if the vector is sorted.
+bool isSorted(const std::vector<int>& vec) {
+    for (size_t i = 1; i < vec.size(); i++) {
+        if (vec[i - 1] > vec[i]) return false;
+    }
+    return true;
+}
+
+TEST(BenchmarkTest, BubbleSortBenchmark) {
+    std::vector<int> original(1000);
+    std::srand(std::time(0));
+
+    for (int i = 0; i < 10000; i++) {
+        std::generate(original.begin(), original.end(), std::rand);
+        std::vector<int> vec = original;
+
+        auto start = std::chrono::high_resolution_clock::now();
+        bubbleSort(vec);
+        auto end = std::chrono::high_resolution_clock::now();
+
+        EXPECT_TRUE(isSorted(vec)) << "BubbleSort failed on iteration " << i;
+
+        std::chrono::duration<double> elapsed_seconds = end - start;
+        if (i == 0) { // Print time for the first test only.
+            std::cout << "Czas sortowania BubbleSort: " << elapsed_seconds.count() << "s\n";
+        }
+    }
+}
+
 TEST(BenchmarkTest, QuickSortBenchmark) {
-    std::vector<int> vec(10000); // Tworzymy wektor z 10000 losowymi liczbami
-    std::srand(std::time(0)); // Inicjalizacja generatora liczb losowych
-    std::generate(vec.begin(), vec.end(), std::rand);
+    std::vector<int> original(1000);
+    std::srand(std::time(0)); // Seed random generator the same way
 
-    // Początek pomiaru czasu
-    auto start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < 10000; i++) {
+        std::generate(original.begin(), original.end(), std::rand);
+        std::vector<int> vec = original;
 
-    quickSort(vec); // Sortujemy wektor
+        auto start = std::chrono::high_resolution_clock::now();
+        quickSort(vec);
+        auto end = std::chrono::high_resolution_clock::now();
 
-    // Koniec pomiaru czasu
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> elapsed_seconds = end - start;
+        EXPECT_TRUE(isSorted(vec)) << "QuickSort failed on iteration " << i;
 
-    std::cout << "Czas sortowania: " << elapsed_seconds.count() << "s\n";
+        std::chrono::duration<double> elapsed_seconds = end - start;
+        if (i == 0) { // Print time for the first test only.
+            std::cout << "Czas sortowania QuickSort: " << elapsed_seconds.count() << "s\n";
+        }
+    }
 }
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-
