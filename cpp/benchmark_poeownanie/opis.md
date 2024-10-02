@@ -1,6 +1,5 @@
-#Heading 1 link [Heading link](https://github.com/pandao/editor.md "Heading link")
-#H1 Benchmark porównanie quicksort i bubble
-####Lista funkcji 
+# Benchmark porównanie quicksort i bubble
+#### Lista funkcji 
                 
 + Funkcja bąbelkowa
     + Pozostaje nie zmieniona w porównaniu do orginalnej funkcji
