@@ -17,6 +17,7 @@
         }
     } while (swapped);
 }
+
 2. Funkcja quicksort.
     + Również pozostaje nie zmieniona w porównaniu do orginalnej funkcji.
 
@@ -33,6 +34,7 @@
         }
     } while (swapped);
 }
+
 3. Funkcja króra sprawdza czy wektor na pewno jest posortowany.
 
 '''cpp
@@ -67,6 +69,7 @@
         }
     }
 }
+
   + Sortowania quicksort.
 
 '''cpp
