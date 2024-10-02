@@ -96,4 +96,4 @@
 
 + Przykład wykonanego kodu
 
-![ Tekst alternatywny](https://github.com/igorwinnicki/student_projects/blob/main/cpp/benchmark_sort/sort.png)
+![Tekst alternatywny](sort.png)
