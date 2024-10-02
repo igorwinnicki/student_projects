@@ -93,7 +93,7 @@
         }
     }
 }
-
+```
 + Przykład wykonanego kodu
 
-![Tekst alternatywny](sort.png)
+![Tekst](sort.png)
