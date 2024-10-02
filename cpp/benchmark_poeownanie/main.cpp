@@ -1,62 +1,91 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <cstdlib>
 #include <ctime>
+#include "gtest/gtest.h"
 #include <chrono>
 
-using namespace std;
+// Sort functions remain unchanged.
+void bubbleSort(std::vector<int>& vec) {
+    bool swapped;
+    do {
+        swapped = false;
+        for (size_t i = 0; i < vec.size() - 1; i++) {
+            if (vec[i] > vec[i + 1]) {
+                std::swap(vec[i], vec[i + 1]);
+                swapped = true;
+            }
+        }
+    } while (swapped);
+}
 
-int partition(vector<int>& arr, int low, int high) {
-    int pivot = arr[high]; // Wybieramy element skrajny jako pivot
-    int i = low - 1;       // Indeks mniejszego elementu
+void quickSort(std::vector<int>& vec) {
+    if (vec.size() <= 1) return;
+    int pivot = vec[vec.size() / 2];
+    std::vector<int> left, right;
+    for (size_t i = 0; i < vec.size(); i++) {
+        if (vec[i] < pivot) left.push_back(vec[i]);
+        else if (vec[i] > pivot) right.push_back(vec[i]);
+    }
+    quickSort(left);
+    quickSort(right);
+    vec.clear();
+    vec.insert(vec.end(), left.begin(), left.end());
+    vec.push_back(pivot);
+    vec.insert(vec.end(), right.begin(), right.end());
+}
 
-    for (int j = low; j < high; j++) {
-        if (arr[j] < pivot) {
-            i++;
-            swap(arr[i], arr[j]); // Zamieniamy elementy mniejsze od pivotu na lewą stronę
+// Function to verify if the vector is sorted.
+bool isSorted(const std::vector<int>& vec) {
+    for (size_t i = 1; i < vec.size(); i++) {
+        if (vec[i - 1] > vec[i]) return false;
+    }
+    return true;
+}
+
+TEST(BenchmarkTest, BubbleSortBenchmark) {
+    std::vector<int> original(1000);
+    std::srand(std::time(0));
+
+    for (int i = 0; i < 10000; i++) {
+        std::generate(original.begin(), original.end(), std::rand);
+        std::vector<int> vec = original;
+
+        auto start = std::chrono::high_resolution_clock::now();
+        bubbleSort(vec);
+        auto end = std::chrono::high_resolution_clock::now();
+
+        EXPECT_TRUE(isSorted(vec)) << "BubbleSort failed on iteration " << i;
+
+        std::chrono::duration<double> elapsed_seconds = end - start;
+        if (i == 0) { // Print time for the first test only.
+            std::cout << "Czas sortowania BubbleSort: " << elapsed_seconds.count() << "s\n";
         }
     }
-    swap(arr[i + 1], arr[high]); // Przesuwamy pivot na odpowiednie miejsce
-    return i + 1; // Zwracamy indeks pivotu
 }
 
-void quickSort(vector<int>& arr, int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high); // Znajdujemy punkt podziału
+TEST(BenchmarkTest, QuickSortBenchmark) {
+    std::vector<int> original(1000);
+    std::srand(std::time(0)); // Seed random generator the same way
 
-        quickSort(arr, low, pi - 1);  // Sortujemy lewą część
-        quickSort(arr, pi + 1, high); // Sortujemy prawą część
+    for (int i = 0; i < 10000; i++) {
+        std::generate(original.begin(), original.end(), std::rand);
+        std::vector<int> vec = original;
+
+        auto start = std::chrono::high_resolution_clock::now();
+        quickSort(vec);
+        auto end = std::chrono::high_resolution_clock::now();
+
+        EXPECT_TRUE(isSorted(vec)) << "QuickSort failed on iteration " << i;
+
+        std::chrono::duration<double> elapsed_seconds = end - start;
+        if (i == 0) { // Print time for the first test only.
+            std::cout << "Czas sortowania QuickSort: " << elapsed_seconds.count() << "s\n";
+        }
     }
 }
 
-int main() {
-    // Tworzymy wektor z 10000 losowymi liczbami
-    vector<int> vec(10000); 
-    srand(time(0)); // Inicjalizacja generatora liczb losowych
-    generate(vec.begin(), vec.end(), rand);
-
-    int n = vec.size();
-
-    // Początek pomiaru czasu
-    auto start = chrono::high_resolution_clock::now();
-
-    // Sortowanie wektora przy użyciu QuickSort
-    quickSort(vec, 0, n - 1);
-
-    // Koniec pomiaru czasu
-    auto end = chrono::high_resolution_clock::now();
-    chrono::duration<double> elapsed_seconds = end - start;
-
-    cout << "Czas sortowania: " << elapsed_seconds.count() << "s\n";
-
-    // Sprawdzanie, czy tablica jest posortowana
-    bool sorted = is_sorted(vec.begin(), vec.end());
-    if (sorted) {
-        cout << "Tablica została poprawnie posortowana.\n";
-    } else {
-        cout << "Błąd: Tablica nie jest poprawnie posortowana.\n";
-    }
-
-    return 0;
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
