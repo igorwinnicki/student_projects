@@ -77,7 +77,7 @@ TEST(BenchmarkTest, IfStatementBenchmark) {
     }
 }
 ```
-![Tekst](sort.png)
+![Tekst](if.png)
   + Case.
 
 ```cpp
@@ -105,7 +105,9 @@ TEST(BenchmarkTest, SwitchCaseBenchmark) {
     }
 }
 ```
-![Tekst](sort.png)
+![Tekst](case.png)
 + Przykład wykonanego kodu
 
-![Tekst](sort.png)
+![Tekst](gotowe.png)
+
+Jak widzimy, if wykonuje się marginalnie szybciej.
