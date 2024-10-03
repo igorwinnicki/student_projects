@@ -44,7 +44,6 @@ TEST(BenchmarkTest, IfStatementBenchmark) {
     }
 
     for (int i = 0; i < 10000; i++) {
-        int randomValue = std::rand() % 10;
 
         auto start = std::chrono::high_resolution_clock::now();
         testIf(randomValue, userValues);
@@ -68,7 +67,6 @@ TEST(BenchmarkTest, SwitchCaseBenchmark) {
     }
 
     for (int i = 0; i < 10000; i++) {
-        int randomValue = std::rand() % 10;
 
         auto start = std::chrono::high_resolution_clock::now();
         testSwitch(randomValue, userValues);
