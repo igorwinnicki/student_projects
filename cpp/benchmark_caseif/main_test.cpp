@@ -1,86 +1,68 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <ctime>
 #include "gtest/gtest.h"
 #include <chrono>
 
-// Sort functions remain unchanged.
-void bubbleSort(std::vector<int>& vec) {
-    bool swapped;
-    do {
-        swapped = false;
-        for (size_t i = 0; i < vec.size() - 1; i++) {
-            if (vec[i] > vec[i + 1]) {
-                std::swap(vec[i], vec[i + 1]);
-                swapped = true;
-            }
-        }
-    } while (swapped);
+// Function to simulate if statements.
+void testIf(int value) {
+    if (value == 0) {}
+    else if (value == 1) {}
+    else if (value == 2) {}
+    else if (value == 3) {}
+    else if (value == 4) {}
+    else if (value == 5) {}
+    else if (value == 6) {}
+    else if (value == 7) {}
+    else if (value == 8) {}
+    else if (value == 9) {}
 }
 
-void quickSort(std::vector<int>& vec) {
-    if (vec.size() <= 1) return;
-    int pivot = vec[vec.size() / 2];
-    std::vector<int> left, right;
-    for (size_t i = 0; i < vec.size(); i++) {
-        if (vec[i] < pivot) left.push_back(vec[i]);
-        else if (vec[i] > pivot) right.push_back(vec[i]);
+// Function to simulate switch/case statements.
+void testSwitch(int value) {
+    switch (value) {
+        case 0: break;
+        case 1: break;
+        case 2: break;
+        case 3: break;
+        case 4: break;
+        case 5: break;
+        case 6: break;
+        case 7: break;
+        case 8: break;
+        case 9: break;
+        default: break;
     }
-    quickSort(left);
-    quickSort(right);
-    vec.clear();
-    vec.insert(vec.end(), left.begin(), left.end());
-    vec.push_back(pivot);
-    vec.insert(vec.end(), right.begin(), right.end());
 }
 
-// Function to verify if the vector is sorted.
-bool isSorted(const std::vector<int>& vec) {
-    for (size_t i = 1; i < vec.size(); i++) {
-        if (vec[i - 1] > vec[i]) return false;
-    }
-    return true;
-}
-
-TEST(BenchmarkTest, BubbleSortBenchmark) {
-    std::vector<int> original(1000);
+TEST(BenchmarkTest, IfStatementBenchmark) {
     std::srand(std::time(0));
-
     for (int i = 0; i < 10000; i++) {
-        std::generate(original.begin(), original.end(), std::rand);
-        std::vector<int> vec = original;
+        int randomValue = std::rand() % 10;
 
         auto start = std::chrono::high_resolution_clock::now();
-        bubbleSort(vec);
+        testIf(randomValue);
         auto end = std::chrono::high_resolution_clock::now();
-
-        EXPECT_TRUE(isSorted(vec)) << "BubbleSort failed on iteration " << i;
 
         std::chrono::duration<double> elapsed_seconds = end - start;
         if (i == 0) { // Print time for the first test only.
-            std::cout << "Czas sortowania BubbleSort: " << elapsed_seconds.count() << "s\n";
+            std::cout << "Czas wykonania testIf: " << elapsed_seconds.count() << "s\n";
         }
     }
 }
 
-TEST(BenchmarkTest, QuickSortBenchmark) {
-    std::vector<int> original(1000);
-    std::srand(std::time(0)); // Seed random generator the same way
-
+TEST(BenchmarkTest, SwitchCaseBenchmark) {
+    std::srand(std::time(0));
     for (int i = 0; i < 10000; i++) {
-        std::generate(original.begin(), original.end(), std::rand);
-        std::vector<int> vec = original;
+        int randomValue = std::rand() % 10;
 
         auto start = std::chrono::high_resolution_clock::now();
-        quickSort(vec);
+        testSwitch(randomValue);
         auto end = std::chrono::high_resolution_clock::now();
-
-        EXPECT_TRUE(isSorted(vec)) << "QuickSort failed on iteration " << i;
 
         std::chrono::duration<double> elapsed_seconds = end - start;
         if (i == 0) { // Print time for the first test only.
-            std::cout << "Czas sortowania QuickSort: " << elapsed_seconds.count() << "s\n";
+            std::cout << "Czas wykonania testSwitch: " << elapsed_seconds.count() << "s\n";
         }
     }
 }
