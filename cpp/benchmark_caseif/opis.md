@@ -17,7 +17,7 @@
         }
     } while (swapped);
 }
-
+```
 + Funkcja quicksort.
     + Również pozostaje nie zmieniona w porównaniu do orginalnej funkcji.
 
@@ -34,7 +34,7 @@
         }
     } while (swapped);
 }
-
+```
 + Funkcja króra sprawdza czy wektor na pewno jest posortowany.
 
 ```cpp
@@ -44,7 +44,7 @@
       }
       return true;
   }
-
+```
 + Przeprowadzane są testy sortowania bąbelkowego.
   + Sortowania bąbelkowego.
 
@@ -69,7 +69,7 @@
         }
     }
 }
-
+```
   + Sortowania quicksort.
 
 ```cpp
@@ -93,6 +93,7 @@
         }
     }
 }
-
+```
 + Przykład wykonanego kodu
-![](https://pandao.github.io/editor.md/examples/images/4.jpg)
+
+![Tekst](sort.png)
