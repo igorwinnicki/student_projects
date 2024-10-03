@@ -97,6 +97,6 @@ TEST(BenchmarkTest, SwitchCaseBenchmark) {
 ![Tekst](case.png)
 + Przykład wykonanego kodu
 
-![Tekst](gotowe.png)
+![Tekst](goto.png)
 
-Jak widzimy, if wykonuje się marginalnie szybciej.
+Jak widzimy, case wykonuje się marginalnie szybciej.
