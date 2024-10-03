@@ -1,38 +1,42 @@
 # Benchmark porównanie quicksort i bubble
 #### Lista funkcji 
                 
-+ Funkcja bąbelkowa.
-    + Pozostaje nie zmieniona w porównaniu do orginalnej funkcji.
++ Funkcja if.
+    + Zwykły "if" który sprawdza wybraną przez nas liczbę.
 
 ```cpp
-  void bubbleSort(std::vector<int>& vec) {
-    bool swapped;
-    do {
-        swapped = false;
-        for (size_t i = 0; i < vec.size() - 1; i++) {
-            if (vec[i] > vec[i + 1]) {
-                std::swap(vec[i], vec[i + 1]);
-                swapped = true;
-            }
-        }
-    } while (swapped);
+
+void testIf(int value, const std::vector<int>& values) {
+    if (value == values[0]) {}
+    else if (value == values[1]) {}
+    else if (value == values[2]) {}
+    else if (value == values[3]) {}
+    else if (value == values[4]) {}
+    else if (value == values[5]) {}
+    else if (value == values[6]) {}
+    else if (value == values[7]) {}
+    else if (value == values[8]) {}
+    else if (value == values[9]) {}
 }
 ```
-+ Funkcja quicksort.
-    + Również pozostaje nie zmieniona w porównaniu do orginalnej funkcji.
++ Funkcja case.
+    + Również zwykły "case" który sprawdza wybraną przez nas liczbę.
 
 ```cpp
-  void bubbleSort(std::vector<int>& vec) {
-    bool swapped;
-    do {
-        swapped = false;
-        for (size_t i = 0; i < vec.size() - 1; i++) {
-            if (vec[i] > vec[i + 1]) {
-                std::swap(vec[i], vec[i + 1]);
-                swapped = true;
-            }
-        }
-    } while (swapped);
+void testSwitch(int value, const std::vector<int>& values) {
+    switch (value) {
+        case 0: break;
+        case 1: break;
+        case 2: break;
+        case 3: break;
+        case 4: break;
+        case 5: break;
+        case 6: break;
+        case 7: break;
+        case 8: break;
+        case 9: break;
+        default: break;
+    }
 }
 ```
 + Funkcja króra sprawdza czy wektor na pewno jest posortowany.
@@ -45,55 +49,63 @@
       return true;
   }
 ```
-+ Przeprowadzane są testy sortowania bąbelkowego.
-  + Sortowania bąbelkowego.
++ Przeprowadzane są testy obu funkcji oraz wprowadzane są dla nich wartości.
+  + If.
 
 ```cpp
-  TEST(BenchmarkTest, BubbleSortBenchmark) {
-    std::vector<int> original(1000);
+TEST(BenchmarkTest, IfStatementBenchmark) {
     std::srand(std::time(0));
 
+    // Pobranie wartości od użytkownika
+    std::vector<int> userValues(1);
+    std::cout << "Podaj 1 wartość do testu if: \n";
+    for (int& val : userValues) {
+        std::cin >> val;
+    }
+
     for (int i = 0; i < 10000; i++) {
-        std::generate(original.begin(), original.end(), std::rand);
-        std::vector<int> vec = original;
+        int randomValue = std::rand() % 10;
 
         auto start = std::chrono::high_resolution_clock::now();
-        bubbleSort(vec);
+        testIf(randomValue, userValues);
         auto end = std::chrono::high_resolution_clock::now();
-
-        EXPECT_TRUE(isSorted(vec)) << "BubbleSort failed on iteration " << i;
 
         std::chrono::duration<double> elapsed_seconds = end - start;
         if (i == 0) { // Print time for the first test only.
-            std::cout << "Czas sortowania BubbleSort: " << elapsed_seconds.count() << "s\n";
+            std::cout << "Czas wykonania testIf: " << elapsed_seconds.count() << "s\n";
         }
     }
 }
 ```
-  + Sortowania quicksort.
+![Tekst](sort.png)
+  + Case.
 
 ```cpp
-  TEST(BenchmarkTest, BubbleSortBenchmark) {
-    std::vector<int> original(1000);
+TEST(BenchmarkTest, SwitchCaseBenchmark) {
     std::srand(std::time(0));
 
+    // Pobranie wartości od użytkownika
+    std::vector<int> userValues(1);
+    std::cout << "Podaj 1 wartość do testu switch/case: \n";
+    for (int& val : userValues) {
+        std::cin >> val;
+    }
+
     for (int i = 0; i < 10000; i++) {
-        std::generate(original.begin(), original.end(), std::rand);
-        std::vector<int> vec = original;
+        int randomValue = std::rand() % 10;
 
         auto start = std::chrono::high_resolution_clock::now();
-        bubbleSort(vec);
+        testSwitch(randomValue, userValues);
         auto end = std::chrono::high_resolution_clock::now();
-
-        EXPECT_TRUE(isSorted(vec)) << "BubbleSort failed on iteration " << i;
 
         std::chrono::duration<double> elapsed_seconds = end - start;
         if (i == 0) { // Print time for the first test only.
-            std::cout << "Czas sortowania BubbleSort: " << elapsed_seconds.count() << "s\n";
+            std::cout << "Czas wykonania testSwitch: " << elapsed_seconds.count() << "s\n";
         }
     }
 }
 ```
+![Tekst](sort.png)
 + Przykład wykonanego kodu
 
 ![Tekst](sort.png)
