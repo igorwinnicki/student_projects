@@ -1,4 +1,4 @@
-# Benchmark porównanie quicksort i bubble
+# Benchmark porównanie if i case
 #### Lista funkcji 
                 
 + Funkcja if.
