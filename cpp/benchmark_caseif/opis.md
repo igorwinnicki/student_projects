@@ -70,7 +70,7 @@ TEST(BenchmarkTest, IfStatementBenchmark) {
     std::cout << "Suma czasu wykonania testIf dla 10000 iteracji: " << total_time_if.count() << "s\n";
 }
 ```
-![Tekst](if.png)
+![Tekst](nowe.png)
   + Case.
 
 ```cpp
@@ -100,9 +100,7 @@ TEST(BenchmarkTest, SwitchCaseBenchmark) {
     std::cout << "Suma czasu wykonania testSwitch dla 10000 iteracji: " << total_time_switch.count() << "s\n";
 }
 ```
-![Tekst](case.png)
-+ Przykład wykonanego kodu
 
-![Tekst](goto.png)
+![Tekst](nowe1.png)
 
 Jak widzimy, case wykonuje się marginalnie szybciej.
