@@ -79,3 +79,5 @@
     ```
 
 + Funkcja przeszła wszytkie testy, oznacza to że działa skutecznie i bez błędów.
+    + Przykład wykonanego kodu:
+    ![Tekst](fizzbuzz.png)
