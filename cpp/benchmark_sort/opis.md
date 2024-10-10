@@ -97,3 +97,5 @@
 + Przykład wykonanego kodu
 
 ![Tekst](sort.png)
+
+Z wykonanego kodu wynika, że quicksort jest szybszym sposobem sortowania niz bubblesort
