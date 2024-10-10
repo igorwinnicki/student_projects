@@ -1,52 +1,47 @@
-// main_test.cpp
 #include <gtest/gtest.h>
 #include "functions.cpp"
 
-////grupa testów "SumaTest"
-TEST(SumaTest, DodawanieLiczbCalkowitych) {
-    int wynik = suma(5, 1);
-    EXPECT_EQ(wynik, 6); // Sprawdza, czy wynik jest równy 6, ale nie kończy testu w przypadku niepowodzenia
+TEST(FizzBuzzTest, DivisibleBy3) {
+    EXPECT_EQ(fizzBuzz(3), "Fizz");
+    EXPECT_EQ(fizzBuzz(6), "Fizz");
+    EXPECT_EQ(fizzBuzz(9), "Fizz");
 }
 
-////grupa testów "AssertionsTest" które pokazują inne asercje z google test
-TEST(AssertionsTest, Equality) {
-    int a = 5;
-    int b = 5;
-    EXPECT_EQ(a, b); // Sprawdza, czy a jest równe b, ale nie kończy testu w przypadku niepowodzenia
-    //ASSERT_EQ(a, b); // Sprawdza, czy a jest równe b i kończy test, jeśli nie jest
+TEST(FizzBuzzTest, DivisibleBy5) {
+    EXPECT_EQ(fizzBuzz(5), "Buzz");
+    EXPECT_EQ(fizzBuzz(10), "Buzz");
+    EXPECT_EQ(fizzBuzz(20), "Buzz");
 }
 
-TEST(AssertionsTest, Inequality) {
-    int a = 5;
-    int b = 10;
-    EXPECT_NE(a, b); // Sprawdza, czy a nie jest równe b, ale nie kończy testu w przypadku niepowodzenia
-    //ASSERT_NE(a, b); // Sprawdza, czy a nie jest równe b i kończy test, jeśli jest
+TEST(FizzBuzzTest, DivisibleBy3And5) {
+    EXPECT_EQ(fizzBuzz(15), "FizzBuzz");
+    EXPECT_EQ(fizzBuzz(30), "FizzBuzz");
+    EXPECT_EQ(fizzBuzz(45), "FizzBuzz");
 }
 
-TEST(AssertionsTest, TrueCondition) {
-    bool condition = true;
-    EXPECT_TRUE(condition); // Sprawdza, czy warunek jest prawdziwy, ale nie kończy testu w przypadku niepowodzenia
-    //ASSERT_TRUE(condition); // Sprawdza, czy warunek jest prawdziwy i kończy test, jeśli nie jest
+TEST(FizzBuzzTest, NotDivisibleBy3Or5) {
+    EXPECT_EQ(fizzBuzz(1), "1");
+    EXPECT_EQ(fizzBuzz(2), "2");
+    EXPECT_EQ(fizzBuzz(4), "4");
 }
 
-TEST(AssertionsTest, FalseCondition) {
-    bool condition = false;
-    EXPECT_FALSE(condition); // Sprawdza, czy warunek jest fałszywy, ale nie kończy testu w przypadku niepowodzenia
-    //ASSERT_FALSE(condition); // Sprawdza, czy warunek jest fałszywy i kończy test, jeśli nie jest
+TEST(FizzBuzzTest, AutomaticTest) {
+    for (int i = 1; i <= 100; ++i) {
+        std::string expected;
+        if (i % 3 == 0 && i % 5 == 0) {
+            expected = "FizzBuzz";
+        } else if (i % 3 == 0) {
+            expected = "Fizz";
+        } else if (i % 5 == 0) {
+            expected = "Buzz";
+        } else {
+            expected = std::to_string(i);
+        }
+        EXPECT_EQ(fizzBuzz(i), expected) << "Failed for number: " << i;
+    }
 }
-
-TEST(AssertionsTest, GreaterThan) {
-    int a = 10;
-    int b = 5;
-    EXPECT_GT(a, b); // Sprawdza, czy a jest większe niż b, ale nie kończy testu w przypadku niepowodzenia
-    ASSERT_GT(a, b); // Sprawdza, czy a jest większe niż b i kończy test, jeśli nie jest
-}
-
-
-// ... inne testy ...
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-
