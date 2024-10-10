@@ -1,4 +1,4 @@
-# Benchmark porównanie if i case 
+# Dokumentacja FizzBuzz
                 
 + Functions.cpp.
     + To bardzo prosta funkcja sprawdzająca czy liczby podzielne są przez 5 i 3 lub tylko przez 3 bądź przez 5.
