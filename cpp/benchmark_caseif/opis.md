@@ -47,24 +47,27 @@ void testSwitch(int value, const std::vector<int>& values) {
 TEST(BenchmarkTest, IfStatementBenchmark) {
     std::srand(std::time(0));
 
-    // Pobranie wartości od użytkownika
-    std::vector<int> userValues(1);
-    std::cout << "Podaj 1 wartość do testu if: \n";
-    for (int& val : userValues) {
-        std::cin >> val;
-    }
+    // Pobranie jednej wartości od użytkownika
+    int userValue;
+    std::cout << "Podaj jedną wartość do testu if: ";
+    std::cin >> userValue;
+
+    // Zmienna do sumowania czasu
+    std::chrono::duration<double> total_time_if(0);
 
     for (int i = 0; i < 10000; i++) {
+        int randomValue = std::rand() % 10;
 
         auto start = std::chrono::high_resolution_clock::now();
-        testIf(randomValue, userValues);
+        testIf(randomValue, userValue);
         auto end = std::chrono::high_resolution_clock::now();
 
         std::chrono::duration<double> elapsed_seconds = end - start;
-        if (i == 0) { // Print time for the first test only.
-            std::cout << "Czas wykonania testIf: " << elapsed_seconds.count() << "s\n";
-        }
+        total_time_if += elapsed_seconds;
     }
+
+    // Wyświetlenie sumarycznego czasu dla wszystkich iteracji
+    std::cout << "Suma czasu wykonania testIf dla 10000 iteracji: " << total_time_if.count() << "s\n";
 }
 ```
 ![Tekst](if.png)
@@ -74,24 +77,27 @@ TEST(BenchmarkTest, IfStatementBenchmark) {
 TEST(BenchmarkTest, SwitchCaseBenchmark) {
     std::srand(std::time(0));
 
-    // Pobranie wartości od użytkownika
-    std::vector<int> userValues(1);
-    std::cout << "Podaj 1 wartość do testu switch/case: \n";
-    for (int& val : userValues) {
-        std::cin >> val;
-    }
+    // Pobranie jednej wartości od użytkownika
+    int userValue;
+    std::cout << "Podaj jedną wartość do testu switch/case: ";
+    std::cin >> userValue;
+
+    // Zmienna do sumowania czasu
+    std::chrono::duration<double> total_time_switch(0);
 
     for (int i = 0; i < 10000; i++) {
+        int randomValue = std::rand() % 10;
 
         auto start = std::chrono::high_resolution_clock::now();
-        testSwitch(randomValue, userValues);
+        testSwitch(randomValue, userValue);
         auto end = std::chrono::high_resolution_clock::now();
 
         std::chrono::duration<double> elapsed_seconds = end - start;
-        if (i == 0) { // Print time for the first test only.
-            std::cout << "Czas wykonania testSwitch: " << elapsed_seconds.count() << "s\n";
-        }
+        total_time_switch += elapsed_seconds;
     }
+
+    // Wyświetlenie sumarycznego czasu dla wszystkich iteracji
+    std::cout << "Suma czasu wykonania testSwitch dla 10000 iteracji: " << total_time_switch.count() << "s\n";
 }
 ```
 ![Tekst](case.png)
