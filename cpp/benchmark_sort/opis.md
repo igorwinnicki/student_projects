@@ -1,4 +1,4 @@
-# Benchmark porównanie quicksort i bubble
+# Benchmark porównanie quicksort i bubblesort
 #### Lista funkcji 
                 
 + Funkcja bąbelkowa.
