@@ -1,8 +1,10 @@
-# Benchmark porównanie if i case
-#### Lista funkcji 
-                
-+ Funkcja if.
-    + Zwykły "if" który sprawdza wybraną przez nas liczbę.
+# Analiza wydajności: Porównanie konstrukcji if i switch
+
+### Cel dokumentacji
+Celem niniejszej dokumentacji jest przeprowadzenie szczegółowej analizy wydajności dwóch popularnych konstrukcji warunkowych w języku C++: if oraz switch. Analizowane będą różnice w czasie wykonania obu metod w kontekście porównywania wartości liczbowych.
+
+#### Funkcja if
+Funkcja testIf wykorzystuje szereg instrukcji if do sprawdzania, czy przekazana liczba (value) odpowiada jednej z dziesięciu wartości w wektorze (values).
 
 ```cpp
 
@@ -19,8 +21,9 @@ void testIf(int value, const std::vector<int>& values) {
     else if (value == values[9]) {}
 }
 ```
-+ Funkcja case.
-    + Również zwykły "case" który sprawdza wybraną przez nas liczbę.
+#### Funkcja case
+
+Funkcja testSwitch implementuje strukturę switch, która w podobny sposób sprawdza wartość liczby value, porównując ją z wartościami od 0 do 9.
 
 ```cpp
 void testSwitch(int value, const std::vector<int>& values) {
@@ -39,9 +42,10 @@ void testSwitch(int value, const std::vector<int>& values) {
     }
 }
 ```
+### Przeprowadzanie testów wydajności
+#### Test dla instrukcji if
 
-+ Przeprowadzane są testy obu funkcji oraz wprowadzane są dla nich wartości.
-  + If.
+W teście if, użytkownik wprowadza jedną wartość, która jest następnie używana do pomiaru czasu wykonania funkcji testIf w pętli przez 10,000 iteracji. Czas wykonania każdej iteracji jest sumowany, a wynik przedstawiany użytkownikowi.
 
 ```cpp
 TEST(BenchmarkTest, IfStatementBenchmark) {
@@ -71,8 +75,9 @@ TEST(BenchmarkTest, IfStatementBenchmark) {
 }
 ```
 ![Tekst](nowe.png)
-  + Case.
+#### Test dla instrukcji switch
 
+Podobnie jak w przypadku if, test switch mierzy czas wykonania funkcji testSwitch na tej samej liczbie iteracji. Użytkownik również podaje wartość, a wyniki są przedstawiane w analogiczny sposób.
 ```cpp
 TEST(BenchmarkTest, SwitchCaseBenchmark) {
     std::srand(std::time(0));
@@ -101,6 +106,12 @@ TEST(BenchmarkTest, SwitchCaseBenchmark) {
 }
 ```
 
-![Tekst](nowe1.png)
+### Wyniki
 
-Jak widzimy, case wykonuje się marginalnie szybciej.
+W wyniku przeprowadzonych testów, na podstawie analizy czasów wykonania obu funkcji, można zauważyć, że konstrukcja switch wykazuje marginalnie szybszy czas wykonania w porównaniu do złożonej serii instrukcji if. Takie wyniki mogą być istotne w kontekście wydajności programów, w których wielokrotne sprawdzenia warunków są kluczowe dla efektywności działania.
+### Wnioski
+
+Na podstawie przeprowadzonych badań można stwierdzić, że w przypadkach, gdzie zachodzi potrzeba wielokrotnego sprawdzania warunków na wartościach całkowitych, konstrukcja switch może okazać się bardziej efektywna od serii instrukcji if. Należy jednak pamiętać, że w praktycznych zastosowaniach wybór odpowiedniej konstrukcji powinien być również uzależniony od kontekstu i czytelności kodu.
+
+
+![Tekst](nowe1.png)
