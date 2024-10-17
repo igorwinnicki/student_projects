@@ -1,8 +1,12 @@
-# Benchmark porównanie quicksort i bubblesort
-#### Lista funkcji 
+# Benchmark: Porównanie Algorytmów Quicksort i Bubblesort
+### Cel Dokumentacji
+
+Celem tej dokumentacji jest przedstawienie szczegółowego porównania dwóch algorytmów sortujących: Bubblesort i Quicksort. Zostaną omówione ich implementacje, właściwości oraz wyniki testów wydajnościowych.
                 
-+ Funkcja bąbelkowa.
-    + Pozostaje nie zmieniona w porównaniu do orginalnej funkcji.
+### Lista Funkcji
+#### 1. Funkcja Bąbelkowa (Bubblesort)
+
+Implementacja klasycznego algorytmu sortowania bąbelkowego. Algorytm ten polega na wielokrotnym przechodzeniu przez listę, porównywaniu sąsiednich elementów i zamienianiu ich miejscami, jeśli są w złej kolejności.
 
 ```cpp
   void bubbleSort(std::vector<int>& vec) {
@@ -18,8 +22,9 @@
     } while (swapped);
 }
 ```
-+ Funkcja quicksort.
-    + Również pozostaje nie zmieniona w porównaniu do orginalnej funkcji.
+#### 2. Funkcja Quicksort
+
+Implementacja algorytmu Quicksort, który jest bardziej efektywnym algorytmem sortowania. Działa na zasadzie podziału tablicy na dwie części, a następnie rekurencyjnego sortowania każdej z nich.
 
 ```cpp
   void bubbleSort(std::vector<int>& vec) {
@@ -35,7 +40,9 @@
     } while (swapped);
 }
 ```
-+ Funkcja króra sprawdza czy wektor na pewno jest posortowany.
+#### 3. Funkcja do Sprawdzania Sortowania
+
+Funkcja, która weryfikuje, czy wektor jest posortowany. Przechodzi przez elementy i sprawdza, czy każdy z nich jest mniejszy lub równy następnemu.
 
 ```cpp
   bool isSorted(const std::vector<int>& vec) {
@@ -45,8 +52,9 @@
       return true;
   }
 ```
-+ Przeprowadzane są testy sortowania bąbelkowego.
-  + Sortowania bąbelkowego.
+#### 4. Testy Wydajnościowe dla Bubblesort
+
+Testy mające na celu zmierzenie czasu wykonania sortowania bąbelkowego. Używają one losowych danych oraz weryfikują, czy wynik sortowania jest poprawny.
 
 ```cpp
   TEST(BenchmarkTest, BubbleSortBenchmark) {
@@ -70,7 +78,9 @@
     }
 }
 ```
-  + Sortowania quicksort.
+#### 5. Testy Wydajnościowe dla Quicksort
+
+Testy mające na celu zmierzenie czasu wykonania algorytmu Quicksort. Procedura jest analogiczna do testów dla sortowania bąbelkowego.
 
 ```cpp
   TEST(BenchmarkTest, BubbleSortBenchmark) {
@@ -94,8 +104,12 @@
     }
 }
 ```
-+ Przykład wykonanego kodu
+#### Przykład wykonanego kodu
 
 ![Tekst](sort.png)
 
-Z wykonanego kodu wynika, że quicksort jest szybszym sposobem sortowania niz bubblesort
+### Podsumowanie Wyników
+
+Z przeprowadzonych testów wynika, że algorytm Quicksort jest znacznie szybszy od Bubblesort. Chociaż Bubblesort jest prostszy do zrozumienia i implementacji, jego złożoność czasowa (O(n²)) czyni go nieefektywnym dla większych zbiorów danych w porównaniu do Quicksort (O(n log n)), który radzi sobie znacznie lepiej z dużymi wektorami.
+
+W praktycznych zastosowaniach, szczególnie przy większych zbiorach danych, zaleca się stosowanie Quicksort lub innych bardziej efektywnych algorytmów sortujących.
