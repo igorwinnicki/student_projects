@@ -1,62 +1,31 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
-#include <chrono>
-
-using namespace std;
-
-int partition(vector<int>& arr, int low, int high) {
-    int pivot = arr[high]; // Wybieramy element skrajny jako pivot
-    int i = low - 1;       // Indeks mniejszego elementu
-
-    for (int j = low; j < high; j++) {
-        if (arr[j] < pivot) {
-            i++;
-            swap(arr[i], arr[j]); // Zamieniamy elementy mniejsze od pivotu na lewą stronę
-        }
-    }
-    swap(arr[i + 1], arr[high]); // Przesuwamy pivot na odpowiednie miejsce
-    return i + 1; // Zwracamy indeks pivotu
-}
-
-void quickSort(vector<int>& arr, int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high); // Znajdujemy punkt podziału
-
-        quickSort(arr, low, pi - 1);  // Sortujemy lewą część
-        quickSort(arr, pi + 1, high); // Sortujemy prawą część
-    }
-}
+#include <cmath>
 
 int main() {
-    // Tworzymy wektor z 10000 losowymi liczbami
-    vector<int> vec(10000); 
-    srand(time(0)); // Inicjalizacja generatora liczb losowych
-    generate(vec.begin(), vec.end(), rand);
+    // Zmienne do przechowywania wysokości i długości schodów
+    double wysokosc, dlugosc;
 
-    int n = vec.size();
+    // Pobranie danych od użytkownika
+    std::cout << "Podaj wysokość schodów (w cm): ";
+    std::cin >> wysokosc;
+    std::cout << "Podaj długość schodów (w cm): ";
+    std::cin >> dlugosc;
 
-    // Początek pomiaru czasu
-    auto start = chrono::high_resolution_clock::now();
+    // Zakresy wysokości i długości stopni
+    double minWysokosc = 15.0;
+    double maxWysokosc = 17.0;
+    double minDlugosc = 28.0;
+    double maxDlugosc = 30.0;
 
-    // Sortowanie wektora przy użyciu QuickSort
-    quickSort(vec, 0, n - 1);
+    // Obliczenie ilości stopni w oparciu o wysokość
+    int iloscStopniWysokosc = std::floor(wysokosc / minWysokosc); // Max ilość stopni
+    int iloscStopniDlugosc = std::floor(dlugosc / minDlugosc); // Max ilość stopni
 
-    // Koniec pomiaru czasu
-    auto end = chrono::high_resolution_clock::now();
-    chrono::duration<double> elapsed_seconds = end - start;
+    // Wybór minimalnej ilości stopni
+    int iloscStopni = std::min(iloscStopniWysokosc, iloscStopniDlugosc);
 
-    cout << "Czas sortowania: " << elapsed_seconds.count() << "s\n";
-
-    // Sprawdzanie, czy tablica jest posortowana
-    bool sorted = is_sorted(vec.begin(), vec.end());
-    if (sorted) {
-        cout << "Tablica została poprawnie posortowana.\n";
-    } else {
-        cout << "Błąd: Tablica nie jest poprawnie posortowana.\n";
-    }
+    // Wyświetlenie wyniku
+    std::cout << "Ilość stopni schodów: " << iloscStopni << std::endl;
 
     return 0;
 }
