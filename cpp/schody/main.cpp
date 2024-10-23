@@ -20,11 +20,11 @@ int main() {
     int iloscStopni = std::min(iloscStopniWysokosc, iloscStopniDlugosc);
 
     double dlugoscStopnia = (minDlugosc + maxDlugosc) / 2;
-    double szerokoscStopnia = (minWysokosc + maxWysokosc) / 2;
+    double wysokoscStopnia = (minWysokosc + maxWysokosc) / 2;
 
     std::cout << "Ilość stopni schodów: " << iloscStopni << std::endl;
     std::cout << "Długość pojedynczego stopnia: " << dlugoscStopnia << " cm" << std::endl;
-    std::cout << "Szerokość pojedynczego stopnia: " << szerokoscStopnia << " cm" << std::endl;
+    std::cout << "Wysokość pojedynczego stopnia: " << wysokoscStopnia << " cm" << std::endl;
 
     return 0;
 }
