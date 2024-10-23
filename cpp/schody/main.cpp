@@ -3,7 +3,7 @@
 
 int main() {
     double wysokosc, dlugosc;
-    
+
     std::cout << "Podaj wysokość schodów (w cm): ";
     std::cin >> wysokosc;
     std::cout << "Podaj długość schodów (w cm): ";
@@ -13,18 +13,18 @@ int main() {
     double maxWysokosc = 17.0;
     double minDlugosc = 28.0;
     double maxDlugosc = 30.0;
-
+    
     int iloscStopniWysokosc = std::floor(wysokosc / minWysokosc);
     int iloscStopniDlugosc = std::floor(dlugosc / minDlugosc);
 
     int iloscStopni = std::min(iloscStopniWysokosc, iloscStopniDlugosc);
 
-    double dlugoscStopnia = (minDlugosc + maxDlugosc) / 2;
-    double wysokoscStopnia = (minWysokosc + maxWysokosc) / 2;
+    double dlugoscStopnia = dlugosc / iloscStopni;
+    double szerokoscStopnia = minWysokosc;
 
     std::cout << "Ilość stopni schodów: " << iloscStopni << std::endl;
     std::cout << "Długość pojedynczego stopnia: " << dlugoscStopnia << " cm" << std::endl;
-    std::cout << "Wysokość pojedynczego stopnia: " << wysokoscStopnia << " cm" << std::endl;
+    std::cout << "Szerokość pojedynczego stopnia: " << szerokoscStopnia << " cm" << std::endl;
 
     return 0;
 }
