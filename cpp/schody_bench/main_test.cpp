@@ -7,7 +7,7 @@ void obliczWymiaryStopnia(double dlugosc, int iloscStopni, double& dlugoscStopni
 
 // Testy jednostkowe
 TEST(SchodoweTests, TestIloscStopni) {
-    EXPECT_EQ(obliczIloscStopni(60.0, 100.0), 4);
+    EXPECT_EQ(obliczIloscStopni(300, 400), 14);
     EXPECT_EQ(obliczIloscStopni(30.0, 60.0), 2);
     EXPECT_EQ(obliczIloscStopni(15.0, 30.0), 1);
 }
