@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <algorithm>
+#include "functions.h"
 
 double obliczIloscStopni(double wysokosc, double dlugosc) {
     const double minWysokosc = 15.0;
@@ -18,7 +19,6 @@ void obliczWymiaryStopnia(double dlugosc, int iloscStopni, double& dlugoscStopni
 }
 
 void wprowadzenieWymiarow(double& wysokosc, double& dlugosc) {
-    // Funkcja pozostaje bez zmian, ale można zamockować jej działanie w testach
     std::cout << "Podaj wysokość schodów (w cm): ";
     std::cin >> wysokosc;
     std::cout << "Podaj długość schodów (w cm): ";
