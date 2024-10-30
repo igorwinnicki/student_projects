@@ -48,3 +48,20 @@ int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
+
+----Kompilacja programu testujacego----
+/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x1b): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+/usr/bin/ld: /tmp/cc4Pj0Fi.o: in function `SchodoweTests_TestIloscStopni_Test::TestBody()':
+main_test.cpp:(.text+0x40): undefined reference to `obliczIloscStopni(double, double)'
+/usr/bin/ld: main_test.cpp:(.text+0x117): undefined reference to `obliczIloscStopni(double, double)'
+/usr/bin/ld: main_test.cpp:(.text+0x1ee): undefined reference to `obliczIloscStopni(double, double)'
+/usr/bin/ld: /tmp/cc4Pj0Fi.o: in function `SchodoweTests_TestWymiaryStopnia_Test::TestBody()':
+main_test.cpp:(.text+0x3df): undefined reference to `obliczWymiaryStopnia(double, int, double&, double&)'
+collect2: error: ld returned 1 exit status
+---Kompilacja testow ukonczona----
+---Uruchamianie programu testujacego---
+chmod: cannot access 'main_test': No such file or directory
+./kompiluj_test.sh: 15: ./main_test: not found
+---Zakonczono program testujacy---
