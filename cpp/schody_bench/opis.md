@@ -48,7 +48,15 @@ Funkcja oblicza długość pojedynczego stopnia oraz ustawia jego szerokość na
 
 Funkcja pobiera od użytkownika wartości wysokości i długości schodów.
 
-//kod
+```cpp
+void wprowadzenieWymiarow(double& wysokosc, double& dlugosc) {
+    std::cout << "Podaj wysokość schodów (w cm): ";
+    std::cin >> wysokosc;
+    std::cout << "Podaj długość schodów (w cm): ";
+    std::cin >> dlugosc;
+}
+
+```
 
 **Parametry:**
 - `wysokosc` - referencja do zmiennej, która przechowa wprowadzoną wartość wysokości schodów.
@@ -64,19 +72,26 @@ Testy weryfikują poprawność działania funkcji z pliku `functions.cpp` przy u
 
 Pierwszy test sprawdza, czy funkcja zwraca poprawną liczbę stopni dla różnych danych wejściowych.
 
-//kod
-
+```cpp
+TEST(SchodoweTests, TestIloscStopni) {
+    EXPECT_EQ(obliczIloscStopni(300, 400), 14);
+    EXPECT_EQ(obliczIloscStopni(30.0, 60.0), 2);
+    EXPECT_EQ(obliczIloscStopni(15.0, 30.0), 1);
+}
+```
 #### 2. Test dla `obliczWymiaryStopnia`
 
 Drugi test weryfikuje, czy funkcja oblicza długość i szerokość stopnia prawidłowo.
 
-//kod
-
-#### 3. Test Automatyczny
-
-Test automatyczny może weryfikować działanie funkcji `obliczIloscStopni` dla szerszego zakresu danych.
-
-//kod
+```cpp
+TEST(SchodoweTests, TestWymiaryStopnia) {
+    double dlugoscStopnia, szerokoscStopnia;
+    obliczWymiaryStopnia(100.0, 4, dlugoscStopnia, szerokoscStopnia);
+    
+    EXPECT_DOUBLE_EQ(dlugoscStopnia, 25.0);
+    EXPECT_DOUBLE_EQ(szerokoscStopnia, 15.0);
+}
+```
 
 ### Podsumowanie
 
