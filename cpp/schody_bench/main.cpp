@@ -18,15 +18,15 @@ int main() {
     
     // Sprawdzenie, czy obliczenia były możliwe
     if (iloscStopni > 0) {
-        double dlugoscStopnia = 0.0, szerokoscStopnia = 0.0;
+        double dlugoscStopnia = 0.0, wysokoscStopnia = 0.0;
 
         // Obliczenie wymiarów stopnia
-        obliczWymiaryStopnia(dlugosc, iloscStopni, dlugoscStopnia, szerokoscStopnia);
+        obliczWymiaryStopnia(dlugosc, iloscStopni, dlugoscStopnia, wysokoscStopnia);
 
         // Wyświetlenie wyników
         std::cout << "Liczba stopni: " << iloscStopni << std::endl;
         std::cout << "Długość pojedynczego stopnia: " << dlugoscStopnia << " cm" << std::endl;
-        std::cout << "Szerokość pojedynczego stopnia: " << szerokoscStopnia << " cm" << std::endl;
+        std::cout << "Szerokość pojedynczego stopnia: " << wysokoscStopnia << " cm" << std::endl;
     } else {
         std::cerr << "Nie można obliczyć schodów z podanych wymiarów." << std::endl;
     }
