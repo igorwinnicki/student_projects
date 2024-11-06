@@ -34,3 +34,11 @@ int main() {
     return 0;
 }
 
+main.cpp: In function ‘int main()’:
+main.cpp:24:29: error: too few arguments to function ‘void obliczWymiaryStopnia(double, double, int, double&, double&)’
+   24 |         obliczWymiaryStopnia(dlugosc, iloscStopni, dlugoscStopnia, wysokoscStopnia);
+      |         ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from main.cpp:2:
+functions.cpp:67:6: note: declared here
+   67 | void obliczWymiaryStopnia(double dlugosc, double wysokosc, int iloscStopni, double& dlugoscStopnia, double& wysokoscStopnia) {
+      |      ^~~~~~~~~~~~~~~~~~~~
