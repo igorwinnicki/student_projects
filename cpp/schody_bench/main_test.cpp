@@ -11,11 +11,11 @@ TEST(SchodoweTests, TestIloscStopni) {
 }
 
 TEST(SchodoweTests, TestWymiaryStopnia) {
-    double dlugoscStopnia, szerokoscStopnia;
-    obliczWymiaryStopnia(100.0, 4, dlugoscStopnia, szerokoscStopnia);
+    double dlugoscStopnia, wysokoscStopnia;
+    obliczWymiaryStopnia(100.0, 4, dlugoscStopnia, wysokoscStopnia);
     
     EXPECT_DOUBLE_EQ(dlugoscStopnia, 25.0);
-    EXPECT_DOUBLE_EQ(szerokoscStopnia, 15.0);
+    EXPECT_DOUBLE_EQ(wysokoscStopnia, 15.0);
 }
 
 // Uruchomienie testów
