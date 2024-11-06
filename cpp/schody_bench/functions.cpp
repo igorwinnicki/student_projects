@@ -33,7 +33,7 @@ double obliczIloscStopni(double wysokosc, double dlugosc) {
 }
 
 // Funkcja obliczająca wymiary pojedynczego stopnia
-void obliczWymiaryStopnia(double dlugosc, int iloscStopni, double& dlugoscStopnia, double& szerokoscStopnia) {
+void obliczWymiaryStopnia(double dlugosc, int iloscStopni, double& dlugoscStopnia, double& wysokoscStopnia) {
     dlugoscStopnia = dlugosc / iloscStopni;
-    szerokoscStopnia = 15.0; // Ustalona szerokość stopnia
+    wysokoscStopnia = 15.0; // Ustalona szerokość stopnia
 }
