@@ -1,105 +1,86 @@
-# Dokumentacja Schodowego Kalkulatora
+# Dokumentacja Programu do Obliczania Schodów
 
 ### Cel Dokumentacji
 
-Celem tej dokumentacji jest przedstawienie implementacji oraz testów programu do obliczania liczby stopni schodów na podstawie wprowadzonych wymiarów (wysokości i długości schodów) oraz wyznaczanie długości i szerokości pojedynczego stopnia. Dodatkowo, przedstawiono aktualizację funkcji o walidację wartości wejściowych, aby zapobiec błędom wynikającym z niepoprawnych danych wejściowych.
+Celem tej dokumentacji jest przedstawienie szczegółów implementacji programu, który oblicza liczbę stopni schodów na podstawie podanych przez użytkownika wymiarów schodów (wysokość i długość), a także szczegółowe wymiary każdego stopnia. Dokumentacja obejmuje również opis testów jednostkowych, które weryfikują poprawność działania programu.
 
-### Opis Funkcji
+---
 
-#### Funkcja `obliczIloscStopni`
+## Opis Funkcji
 
-Funkcja `obliczIloscStopni` oblicza maksymalną liczbę stopni schodów, jakie można uzyskać na podstawie minimalnych wymagań dla ich wysokości i długości. Dodano również walidację, która wyświetla błąd i zwraca `0`, jeśli wartości wejściowe są zbyt małe, aby obliczyć poprawną liczbę stopni.
+### 1. `obliczIloscStopni`
 
-```cpp
-double obliczIloscStopni(double wysokosc, double dlugosc) {
-    const double minWysokosc = 15.0;
-    const double minDlugosc = 28.0;
+Funkcja `obliczIloscStopni` oblicza maksymalną liczbę stopni, która może być wygenerowana na podstawie wymiarów schodów podanych przez użytkownika, przy czym każdy stopień ma spełniać minimalne i maksymalne wymagania dotyczące wysokości i długości.
 
-    if (wysokosc < minWysokosc || dlugosc < minDlugosc) {
-        std::cerr << "Wymiary schodów są za małe, aby obliczyć liczbę stopni.\n";
-        return 0;
-    }
+//kod
 
-    int iloscStopniWysokosc = std::floor(wysokosc / minWysokosc);
-    int iloscStopniDlugosc = std::floor(dlugosc / minDlugosc);
+- **Parametry**:
+  - `wysokosc` - całkowita wysokość schodów w centymetrach (double).
+  - `dlugosc` - całkowita długość schodów w centymetrach (double).
 
-    return std::min(iloscStopniWysokosc, iloscStopniDlugosc);
-}
-```
+- **Zwracana wartość**:
+  - Zwraca liczbę stopni jako wartość całkowitą (int), która spełnia wymagania minimalnych wymiarów stopni. 
+  - Jeśli wymiary są zbyt małe, zwraca wartość `-1`, co oznacza brak możliwości wygenerowania schodów.
 
-#### Funkcja `obliczWymiaryStopnia`
+---
 
-Funkcja `obliczWymiaryStopnia` oblicza długość i szerokość pojedynczego stopnia na podstawie długości schodów oraz liczby stopni. Jeśli liczba stopni jest niepoprawna (mniejsza lub równa 0), funkcja wypisuje komunikat o błędzie i ustawia wartości długości i szerokości stopnia na `0`.
+### 2. `obliczWymiaryStopnia`
 
-```cpp
-void obliczWymiaryStopnia(double dlugosc, int iloscStopni, double& dlugoscStopnia, double& szerokoscStopnia) {
-    if (iloscStopni <= 0) {
-        std::cerr << "Błędna liczba stopni. Nie można obliczyć wymiarów stopnia.\n";
-        dlugoscStopnia = 0;
-        szerokoscStopnia = 0;
-        return;
-    }
-    dlugoscStopnia = dlugosc / iloscStopni;
-    szerokoscStopnia = 15.0; // Szerokość stopnia ustalamy na stałą wartość
-}
-```
+Funkcja `obliczWymiaryStopnia` oblicza szczegółowe wymiary pojedynczego stopnia na podstawie całkowitych wymiarów schodów oraz liczby stopni wygenerowanej przez `obliczIloscStopni`.
 
-#### Funkcja `wprowadzenieWymiarow`
+//kod
 
-Funkcja `wprowadzenieWymiarow` pobiera od użytkownika wymiary schodów (wysokość i długość). Dodatkowo, wyświetla ostrzeżenia, jeśli podane wymiary są mniejsze niż minimalne wartości, nawet jeśli nie przerywa działania programu. 
+- **Parametry**:
+  - `dlugosc` - całkowita długość schodów w centymetrach (double).
+  - `wysokosc` - całkowita wysokość schodów w centymetrach (double).
+  - `iloscStopni` - liczba stopni wygenerowana przez funkcję `obliczIloscStopni` (int).
+  - `dlugoscStopnia` - referencja do zmiennej przechowującej długość pojedynczego stopnia (double).
+  - `wysokoscStopnia` - referencja do zmiennej przechowującej wysokość pojedynczego stopnia (double).
 
-```cpp
-void wprowadzenieWymiarow(double& wysokosc, double& dlugosc) {
-    std::cout << "Podaj wysokość schodów (w cm): ";
-    std::cin >> wysokosc;
-    std::cout << "Podaj długość schodów (w cm): ";
-    std::cin >> dlugosc;
+- **Opis działania**:
+  Funkcja dzieli długość i wysokość schodów przez liczbę stopni, uzyskując wymiary każdego stopnia osobno.
 
-    if (wysokosc < 15.0) {
-        std::cerr << "Uwaga: Wysokość jest mniejsza od minimalnej zalecanej wartości 15 cm.\n";
-    }
-    if (dlugosc < 28.0) {
-        std::cerr << "Uwaga: Długość jest mniejsza od minimalnej zalecanej wartości 28 cm.\n";
-    }
-}
-```
+---
 
-### Testy
+### 3. `wprowadzenieWymiarow`
 
-Poniżej znajdują się testy jednostkowe, które sprawdzają poprawność działania funkcji w różnych przypadkach. 
+Funkcja `wprowadzenieWymiarow` pobiera od użytkownika wysokość i długość schodów.
 
-#### Testy dla Funkcji `obliczIloscStopni`
+//kod
 
-Testy sprawdzają, czy funkcja `obliczIloscStopni` zwraca poprawną liczbę stopni dla przykładowych wymiarów schodów, a także obsługuje przypadki, w których wymiary schodów są za małe, by uzyskać poprawną liczbę stopni.
+- **Parametry**:
+  - `wysokosc` - referencja do zmiennej przechowującej wartość wysokości schodów w centymetrach (double).
+  - `dlugosc` - referencja do zmiennej przechowującej wartość długości schodów w centymetrach (double).
 
-```cpp
-TEST(SchodoweTests, TestIloscStopni) {
-    EXPECT_EQ(obliczIloscStopni(300, 400), 14);
-    EXPECT_EQ(obliczIloscStopni(30.0, 60.0), 2);
-    EXPECT_EQ(obliczIloscStopni(15.0, 30.0), 1);
-    EXPECT_EQ(obliczIloscStopni(10.0, 20.0), 0); // Wymiary za małe, aby obliczyć liczbę stopni
-}
-```
+- **Opis działania**:
+  Funkcja wyświetla komunikaty dla użytkownika i zapisuje wprowadzone wartości w odpowiednich zmiennych.
 
-#### Testy dla Funkcji `obliczWymiaryStopnia`
+---
 
-Testy sprawdzają poprawność obliczeń wymiarów stopni dla różnych wartości długości schodów oraz liczby stopni. Dodatkowo, test sprawdza, czy funkcja obsługuje przypadki, w których liczba stopni jest niepoprawna.
-```cpp
-TEST(SchodoweTests, TestWymiaryStopnia) {
-    double dlugoscStopnia, szerokoscStopnia;
-    obliczWymiaryStopnia(100.0, 4, dlugoscStopnia, szerokoscStopnia);
+## Plik `main.cpp`
 
-    EXPECT_DOUBLE_EQ(dlugoscStopnia, 25.0);
-    EXPECT_DOUBLE_EQ(szerokoscStopnia, 15.0);
+Główna logika programu znajduje się w `main.cpp`, gdzie wykonywane są operacje pobierania danych od użytkownika, obliczania liczby stopni, a także wyświetlania wymiarów każdego stopnia.
 
-    obliczWymiaryStopnia(100.0, 0, dlugoscStopnia, szerokoscStopnia); // Test z niepoprawną liczbą stopni
-    EXPECT_DOUBLE_EQ(dlugoscStopnia, 0);
-    EXPECT_DOUBLE_EQ(szerokoscStopnia, 0);
-}
-```
+//kod
 
-### Podsumowanie
+---
 
-Program został uzupełniony o walidacje zapobiegające błędom wynikającym z niepoprawnych wartości wejściowych. Wszystkie funkcje przeszły testy jednostkowe, co potwierdza poprawność i niezawodność ich działania.
+## Testy
 
+Testy jednostkowe sprawdzają, czy funkcje `obliczIloscStopni` i `obliczWymiaryStopnia` działają zgodnie z założeniami programu. Testy znajdują się w pliku `main_test.cpp`.
 
+### Testy do `obliczIloscStopni`
+
+Testy funkcji `obliczIloscStopni` sprawdzają poprawność obliczeń liczby stopni przy różnych wartościach wysokości i długości schodów, a także reakcję funkcji na wartości niemożliwe do przetworzenia.
+
+//kod
+
+### Testy do `obliczWymiaryStopnia`
+
+Testy funkcji `obliczWymiaryStopnia` weryfikują poprawność obliczeń długości i wysokości pojedynczego stopnia na podstawie liczby stopni oraz całkowitych wymiarów schodów.
+
+//kod
+
+## Podsumowanie
+
+Program do obliczania schodów pozwala użytkownikowi wprowadzić wymiary schodów i oblicza szczegółowe dane o liczbie i wymiarach stopni. Program został przetestowany przy użyciu testów jednostkowych, co zapewnia poprawność działania w szerokim zakresie wartości, w tym przy wartościach niemożliwych do przetworzenia.
