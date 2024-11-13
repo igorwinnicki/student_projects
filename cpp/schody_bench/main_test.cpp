@@ -12,7 +12,7 @@ TEST(SchodoweTests, TestIloscStopni) {
 
 TEST(SchodoweTests, TestWymiaryStopnia) {
     double dlugoscStopnia, wysokoscStopnia;
-    obliczWymiaryStopnia(100.0, 4, dlugoscStopnia, wysokoscStopnia);
+obliczWymiaryStopnia(100.0, 60.0, 4, dlugoscStopnia, wysokoscStopnia);
     
     EXPECT_DOUBLE_EQ(dlugoscStopnia, 25.0);
     EXPECT_DOUBLE_EQ(wysokoscStopnia, 15.0);
