@@ -57,3 +57,11 @@ int main() {
     return 0;
 }
 
+
+/usr/bin/ld: /tmp/ccd00XwN.o: in function `SchodoweTests_TestWymiaryStopnia_Test::TestBody()':
+main_test.cpp:(.text+0x5a5): undefined reference to `obliczWymiaryStopnia(double, int, double&, double&)'
+collect2: error: ld returned 1 exit status
+---Kompilacja testow ukonczona----
+---Uruchamianie programu testujacego---
+chmod: cannot access 'main_test': No such file or directory
+./kompiluj_test.sh: 15: ./main_test: not found
