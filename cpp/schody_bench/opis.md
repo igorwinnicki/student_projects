@@ -116,6 +116,23 @@ int main() {
 ```
 
 ---
+## Przykład działania programu dla różnych liczb
+
+| Wysokość schodów (cm) | Długość schodów (cm) | Liczba stopni | Długość pojedynczego stopnia (cm) | Wysokość pojedynczego stopnia (cm) |
+|------------------------|----------------------|---------------|------------------------------------|-------------------------------------|
+| 300                    | 400                  | 14            | 28.57                             | 21.43                               |
+| 200                    | 350                  | 10            | 35.0                              | 20.0                                |
+| 150                    | 280                  | 7             | 40.0                              | 21.43                               |
+| 30                     | 60                   | 2             | 30.0                              | 15.0                                |
+| 15                     | 30                   | 1             | 30.0                              | 15.0                                |
+
+#### Wyjaśnienia do tabelki:
+- **Wysokość schodów (cm)**: Całkowita wysokość, jaką mają mieć schody.
+- **Długość schodów (cm)**: Całkowita długość schodów.
+- **Liczba stopni**: Obliczona liczba stopni na podstawie minimalnych wymiarów schodów.
+- **Długość pojedynczego stopnia (cm)**: Długość stopnia po podziale całkowitej długości przez liczbę stopni.
+- **Wysokość pojedynczego stopnia (cm)**: Obliczona wysokość pojedynczego stopnia na podstawie całkowitej wysokości schodów i liczby stopni, dopasowana do proporcji schodów.
+---
 
 ## Testy
 
