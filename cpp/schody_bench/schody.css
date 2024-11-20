@@ -1,0 +1,58 @@
+using System;
+
+class Program
+{
+    static double ObliczIloscStopni(double wysokosc, double dlugosc)
+    {
+        const double minWysokosc = 15.0;
+        const double maxWysokosc = 17.0;
+        const double minDlugosc = 28.0;
+        const double maxDlugosc = 30.0;
+
+        int iloscStopniWysokosc = (int)Math.Floor(wysokosc / minWysokosc);
+        int iloscStopniDlugosc = (int)Math.Floor(dlugosc / minDlugosc);
+
+        if (iloscStopniWysokosc <= 0 || iloscStopniDlugosc <= 0)
+        {
+            return -1;
+        }
+
+        return Math.Min(iloscStopniWysokosc, iloscStopniDlugosc);
+    }
+
+    static void ObliczWymiaryStopnia(double dlugosc, double wysokosc, int iloscStopni, out double dlugoscStopnia, out double wysokoscStopnia)
+    {
+        dlugoscStopnia = dlugosc / iloscStopni;
+        wysokoscStopnia = wysokosc / iloscStopni;
+    }
+
+    static void WprowadzenieWymiarow(out double wysokosc, out double dlugosc)
+    {
+        Console.Write("Podaj wysokość schodów (w cm): ");
+        wysokosc = Convert.ToDouble(Console.ReadLine());
+        Console.Write("Podaj długość schodów (w cm): ");
+        dlugosc = Convert.ToDouble(Console.ReadLine());
+    }
+
+    static void Main()
+    {
+        double wysokosc, dlugosc;
+        WprowadzenieWymiarow(out wysokosc, out dlugosc);
+
+        int iloscStopni = (int)ObliczIloscStopni(wysokosc, dlugosc);
+        
+        if (iloscStopni == -1)
+        {
+            Console.Error.WriteLine("Nie można wygenerować schodów o podanych wymiarach.");
+            Environment.Exit(1);
+        }
+
+        double dlugoscStopnia, wysokoscStopnia;
+        ObliczWymiaryStopnia(dlugosc, wysokosc, iloscStopni, out dlugoscStopnia, out wysokoscStopnia);
+
+        Console.WriteLine("Ilość stopni schodów: " + iloscStopni);
+        Console.WriteLine("Długość pojedynczego stopnia: " + dlugoscStopnia + " cm");
+        Console.WriteLine("Wysokość pojedynczego stopnia: " + wysokoscStopnia + " cm");
+    }
+}
+
