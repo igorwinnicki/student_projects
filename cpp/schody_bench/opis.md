@@ -46,8 +46,6 @@ double obliczIloscStopni(double wysokosc, double dlugosc) {
 Funkcja `obliczWymiaryStopnia` oblicza szczegółowe wymiary pojedynczego stopnia na podstawie całkowitych wymiarów schodów oraz liczby stopni wygenerowanej przez `obliczIloscStopni`.
 
 ```cpp
-//kod
-
 void obliczWymiaryStopnia(double dlugosc, double wysokosc, int iloscStopni, double& dlugoscStopnia, double& wysokoscStopnia) {
     dlugoscStopnia = dlugosc / iloscStopni;
     wysokoscStopnia = wysokosc / iloscStopni;
@@ -71,7 +69,6 @@ void obliczWymiaryStopnia(double dlugosc, double wysokosc, int iloscStopni, doub
 Funkcja `wprowadzenieWymiarow` pobiera od użytkownika wysokość i długość schodów.
 
 ```cpp
-//kod
 void wprowadzenieWymiarow(double& wysokosc, double& dlugosc) {
     std::cout << "Podaj wysokość schodów (w cm): ";
     std::cin >> wysokosc;
