@@ -165,6 +165,10 @@ TEST(SchodoweTests, TestWymiaryStopnia) {
 ```
 ## Podsumowanie
 Kod został skutecznie przetestowany i działa zgodnie z oczekiwaniami, zwracając prawidłowe wyniki dla każdego testowanego przypadku.
-![Tekst](fizzbuzz.png)
+![Tekst](test.png)
+
+---
+
+![Tekst](schody.png)
 
 Program do obliczania schodów pozwala użytkownikowi wprowadzić wymiary schodów i oblicza szczegółowe dane o liczbie i wymiarach stopni. Program został przetestowany przy użyciu testów jednostkowych, co zapewnia poprawność działania w szerokim zakresie wartości, w tym przy wartościach niemożliwych do przetworzenia.
